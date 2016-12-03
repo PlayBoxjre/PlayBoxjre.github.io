@@ -39,7 +39,7 @@ function f_openCameraControl(){
 	device.onAVSessionConnect(function(ret){
   		if(ret.code == 1){
   		  device.log('视频连接建立成功');
-		  }
+		  };
 	});
 };
 
@@ -121,4 +121,4 @@ function send(){
         device.log('onError: ' + JSON.stringify(ret));
       }
     });
-}
+};
