@@ -39,6 +39,7 @@ function openLog(boo){
 			device.log('开启了调试模式才能看到log', 'yellow');
 			device.log('title can daft', '#f0f');
 		}
+		alert("open log");
 		return 0;
 };
 
