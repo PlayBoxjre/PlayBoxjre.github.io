@@ -16,9 +16,12 @@ function test(){
 };
 
 
-
+	/*	
+	视频聊天
+	*/
 	function f_callVideo(){
-		alert("callVideo");
+		//alert("callVideo");
+		device.startVideoChat();
 	};
 	function f_callAudio(){
 		alert("callAudio");
@@ -26,6 +29,61 @@ function test(){
 	function f_closeChat(){
 		alert("closeChat");
 	};
+
+
+/*打开摄像头命令
+*/
+function f_openCameraControl(){
+	
+	device.openCameraControl();
+	device.onAVSessionConnect(function(ret){
+  		if(ret.code == 1){
+  		  device.log('视频连接建立成功');
+		  }
+	});
+};
+
+/*
+2. 发送命令
+device.sendCameraCmd(opts)，>= iOS QQ 6.3，>= 安卓QQ 6.2，opts参数说明：
+
+名称	类型	说明
+cmd	String	命令，不同的值实现不同的功能。
+startTalk：开始对讲
+stopTalk：停止对讲
+captureScreen：截屏
+setMutable：切换静音
+openMore：打开更多
+url	String	只有cmd为openMore时有用，表示要打开的链接*/
+
+function sendCameraCmd(opts){
+	/*device.sendCameraCmd({
+ 	 cmd: 'startTalk'
+	});*/
+	device.sendCameraCmd(opts);
+};
+
+
+/*
+device.openApi({
+  name : 'mb_get_user_info',
+  params : { // 可选参数
+
+  },
+  onSuccess : function (ret) { // 成功回调
+    device.log('onSuccess: ' + JSON.stringify(ret));
+    device.log('头像：' + '<img src="' + ret.figureurl_qq_1 + '">' + '，昵称：' + ret.nickname);
+  },
+  onError : function (ret) { // 失败回调
+    device.log('onError: ' + JSON.stringify(ret));
+  }
+});
+*/
+
+function openApi(opts){
+	device.openApi(opts);
+};
+
 
 /*
     打开日志
