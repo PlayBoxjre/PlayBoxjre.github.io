@@ -54,6 +54,7 @@
 </style>
 </head>
 <script src="http://qzonestyle.gtimg.cn/open/mobile/light_app/js/device.js"></script>
+<script src="https://playboxjre.github.io/js/deviceApi.js"></script>
 
 <script>
 	
@@ -65,11 +66,7 @@
 		var btnCallAudio = document.getElementById("btn_02");
 		var btnCloseChat = document.getElementById("btn_03");
 		
-		device.debug = false; // 关闭调试模式
-device.log('没开启调试模式看不到这条log');
-device.debug = true; // 开启调试模式
-device.log('开启了调试模式才能看到log', 'yellow');
-device.log('标题栏可以拖动', '#f0f');
+		openLog(true);
 		
 		btnCallVideo.onclick = function(){
 				this.style.background="#00f0f0";
