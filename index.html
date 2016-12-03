@@ -1,9 +1,109 @@
+<!DOCTYPE>
 <html>
 <head>
+<meta charset="gb2312"/>
+<title>controller</title>
+	<style >
+		body,div,content,ul,ol,li,span,img,p{padding:0px;margin:0px;border:0px;}
+		div{
+			text-align:center;
+			vertical-align:middle;
+			line-height:100px;
+		}
+		.content{
+			margin:0 auto;
+			width:70%;
+			height:100%;
+		}
+		.control_btn{
+			width:30%;
+			height:100px;
+			background-color :yellow;
+			background-position:center center;
+			background-attachment:float;
+			background-repeat:no-repeat;
+			float:left;
+		}
+		.line_01{
+			position:relative;
+	
+		}
+		.line_02{
+			position:relative;
+			top:1px;
+			bottom:1px;
+		}
+		.line_03{
+				position:relative;
+				top:2px;
+		}
+		#btn_01,#btn_04,#btn_07{
+		background-color:#eee;
+		}
+		#btn_02,#btn_05,#btn_08{
+		background-color:#eee;
+		margin-left:2%;
+		margin-right:2%;
+		}
+		#btn_03,#btn_06,#btn_09{
+		background-color:#eee;
+		}
+</style>
 </head>
-<body>
-  <img src="android_study_line.png" alt="android study line" title="android learning" />
+<script src="http://qzonestyle.gtimg.cn/open/mobile/light_app/js/device.js"></script>
+<script src="js/deviceApi.js" type="text/javascript"></script>
+<script>
+	var f_callVideo,f_callAudio,f_closeChat;
+	f_callVideo = function(){
+		alert("callVideo");
+	};
+	f_callAudio = function(){
+		alert("callAudio");
+	};
+	f_closeChat = function(){
+		alert("closeChat");
+	};
+	
+	
+	window.onload =  function(){
+//打开qq log
+		
+		var btnCallVideo = document.getElementById("btn_01");
+		var btnCallAudio = document.getElementById("btn_02");
+		var btnCloseChat = document.getElementById("btn_03");
+	
+		btnCallVideo.onclick = f_callVideo;
+		btnCallAudio.onclick = f_callAudio;
+		btnCloseChat.onclick = f_closeChat;
+		//open qq log out
+		openLog(true);
 
+		send();
+	
+  };
+
+	
+
+</script>
+
+<body>
+	<div class="content">
+		<div class="line_01">
+			<div class="control_btn" id="btn_01">拨打视频</div>
+			<div class="control_btn" id="btn_02">拨打音频</div>
+			<div class="control_btn" id="btn_03">关闭视频</div>
+		</div>
+	    <div class="line_02">
+			<div class="control_btn" id="btn_04">关闭音视频</div>
+			<div class="control_btn" id="btn_05">5</div>
+			<div class="control_btn" id="btn_06">6</div>
+		</div>
+		<div class="line_03">
+			<div class="control_btn" id="btn_07">7</div>
+			<div class="control_btn" id="btn_08">8</div>
+			<div class="control_btn" id="btn_09">9</div>
+		</div>
+	</div>
 </body>
 
 </html>
