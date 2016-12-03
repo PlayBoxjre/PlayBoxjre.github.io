@@ -81,7 +81,11 @@
 				device.showToast('≤‚ ‘');
 		};
 		
-		Obtn02.onclick =  f_callVideo();//video call 
+		Obtn02.onclick =  function(){
+			this.style.background="#ff00ee";
+			f_callVideo();//video call 
+			device.showToast('≤‚ ‘');
+		}
 		
 		
 		//alert("xx");
@@ -114,15 +118,14 @@ function test(){
 	*/
 	function f_callVideo(){
 		//alert("callVideo");
-		this.style.background="#ff00ee";
 		device.startVideoChat();
 	};
 	function f_callAudio(){
-		this.style.background="#ff00ee";
+		//this.style.background="#ff00ee";
 		alert("callAudio");
 	};
 	function f_closeChat(){
-		this.style.background="#ff00ee";
+		//this.style.background="#ff00ee";
 		alert("closeChat");
 	};
 
