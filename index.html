@@ -53,16 +53,6 @@
 <script src="http://qzonestyle.gtimg.cn/open/mobile/light_app/js/device.js"></script>
 <script src="js/deviceApi.js" type="text/javascript"></script>
 <script>
-	var f_callVideo,f_callAudio,f_closeChat;
-	f_callVideo = function(){
-		alert("callVideo");
-	};
-	f_callAudio = function(){
-		alert("callAudio");
-	};
-	f_closeChat = function(){
-		alert("closeChat");
-	};
 	
 	
 	window.onload =  function(){
@@ -76,9 +66,10 @@
 		btnCallAudio.onclick = f_callAudio;
 		btnCloseChat.onclick = f_closeChat;
 		//open qq log out
+		test();
 		openLog(true);
 
-		send();
+		//send();
 	
   };
 
@@ -89,12 +80,12 @@
 <body>
 	<div class="content">
 		<div class="line_01">
-			<div class="control_btn" id="btn_01">拨打视频</div>
-			<div class="control_btn" id="btn_02">拨打音频</div>
-			<div class="control_btn" id="btn_03">关闭视频</div>
+			<div class="control_btn" id="btn_01">openVideo</div>
+			<div class="control_btn" id="btn_02">callAudio</div>
+			<div class="control_btn" id="btn_03">close</div>
 		</div>
 	    <div class="line_02">
-			<div class="control_btn" id="btn_04">关闭音视频</div>
+			<div class="control_btn" id="btn_04">4</div>
 			<div class="control_btn" id="btn_05">5</div>
 			<div class="control_btn" id="btn_06">6</div>
 		</div>

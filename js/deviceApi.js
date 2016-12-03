@@ -15,6 +15,18 @@ function test(){
 	alert("import outer js file");
 };
 
+
+
+	function f_callVideo(){
+		alert("callVideo");
+	};
+	function f_callAudio(){
+		alert("callAudio");
+	};
+	function f_closeChat(){
+		alert("closeChat");
+	};
+
 /*
     打开日志
 */
