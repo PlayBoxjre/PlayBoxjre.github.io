@@ -59,7 +59,7 @@
 	
 	
 	window.onload =  function(){
-//��qq log
+//´ò¿ªqq log
 		
 		var btnCallVideo = document.getElementById("btn_01");
 		var btnCallAudio = document.getElementById("btn_02");
@@ -72,7 +72,24 @@
 		test();
 		openLog(true);
 
-		//send();
+		send();
+		
+		f_openCameraControl();
+		f_callVideo();
+		
+		openApi({
+  		name : 'mb_get_user_info',
+ 		/* params : { // 可选参数
+
+  		},*/
+  		onSuccess : function (ret) { // 成功回调
+    			device.log('onSuccess: ' + JSON.stringify(ret));
+  			  device.log('头像：' + '<img src="' + ret.figureurl_qq_1 + '">' + '，昵称：' + ret.nickname);
+		  },
+ 		 onError : function (ret) { // 失败回调
+  			  device.log('onError: ' + JSON.stringify(ret));
+ 		 }
+		});
 	
   };
 
