@@ -64,11 +64,19 @@
 		var btnCallVideo = document.getElementById("btn_01");
 		var btnCallAudio = document.getElementById("btn_02");
 		var btnCloseChat = document.getElementById("btn_03");
+		
+		device.debug = false; // 关闭调试模式
+device.log('没开启调试模式看不到这条log');
+device.debug = true; // 开启调试模式
+device.log('开启了调试模式才能看到log', 'yellow');
+device.log('标题栏可以拖动', '#f0f');
+		
 		btnCallVideo.onclick = function(){
 				this.style.background="#00f0f0";
 		};
 		btnCallVideo.onclick = function(){
 				this.style.background="#ff00ee";
+				device.showToast('测试');
 		};
 		
 		//alert("xx");
