@@ -62,18 +62,27 @@
 	window.onload =  function(){
 //Â´Ã²Â¿Âªqq log
 		
-		var btnCallVideo = document.getElementById("btn_01");
-		var btnCallAudio = document.getElementById("btn_02");
-		var btnCloseChat = document.getElementById("btn_03");
+		var Obtn01 = document.getElementById("btn_01");
+		var Obtn02 = document.getElementById("btn_02");
+		var Obtn03 = document.getElementById("btn_03");
+		var Obtn04 = document.getElementById("btn_04");
+		var Obtn05 = document.getElementById("btn_05");
+		var Obtn06 = document.getElementById("btn_06");
+		var Obtn07 = document.getElementById("btn_07");
+		var Obtn08 = document.getElementById("btn_08");
+		var Obtn09 = document.getElementById("btn_09");
 		
 		openLog(true);
 		
 
-		btnCallVideo.onclick = function(){
+		Obtn01.onclick = function(){
 				this.style.background="#ff00ee";
 				f_openCameraControl();
 				device.showToast('²âÊÔ');
 		};
+		
+		Obtn02.onclick =  f_callVideo();//video call 
+		
 		
 		//alert("xx");
 	
