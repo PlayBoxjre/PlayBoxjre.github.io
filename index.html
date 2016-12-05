@@ -6,24 +6,37 @@
 	<style>
 		body,div,content,ul,ol,li,span,img,p{padding:0px;margin:0px;border:0px;}
 		
+		body{
+		background:url("bg_01.png") center center ;
+		}
 		header,footer{
-			width:80%;
+			width:90%;
 			position:relative;
-			top:0px;
-			left:0px;
+		
 			clear:both;
-			margin:0 auto;
-			background-color:lightgray;
+		margin:0 auto;
+		
+		}
+		footer{
+		clear: both; position: relative; z-index: 10;	
+		}
+		header:after,footer:after{
+			content:"";
+		
+			clear:both;
+			display:block;
 		}
 		
 		.controll_direction:after{
 			content:"";
 			clear:both;
+			display:block;
 		}
 		
 		.btn_style{
 			width:40%;
 			height:20%;
+			box-shadow:0px 0px 50px #777;
 		}
 		
 		.contorll_direction div{
@@ -42,7 +55,7 @@
 			margin-top:-15px;
 			margin-left:-60px;
 			color:white;
-			font-size:30px;
+			font-size:3em;
 			bold:bold;
 		}
 		#right{
@@ -62,7 +75,12 @@
 		#takePicture{
 			margin-left:2%;
 		}
-		
+		content{
+			min-height:60%;
+			float:left;
+			opacity:60;
+			box-shadow:10px 10px -10px #f00;
+		}
 		
 		
 		
@@ -83,6 +101,7 @@
 			<div class="btn_style" id="right"><p>right &gt;&gt;&gt;</p></div>
 		</div>
 	</header>
+	<content></content>
 	<footer>
 		<div class="user_operation">
 			<div id="videoCall" class="btn_style"><p>video call</p></div>
