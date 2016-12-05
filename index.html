@@ -52,8 +52,8 @@
 			position:relative;
 			left:50%;
 			top:50%;
-			margin-top:-15px;
-			margin-left:-60px;
+			margin-top:-5px;
+			margin-left:-10px;
 			color:white;
 			font-size:1em;
 			bold:bold;
@@ -161,13 +161,13 @@
 	
 	function setMousedownListener(btnId,color){
 		var btn = document.getElementById(btnId);
-		btn.onmousedown = function(){
+		btn.onmouseover = function(){
 			changeBoxBackgroundColor(btn,color);
 		};
 	};
 	function setMouseupListener(btnId,color){
 		var btn = document.getElementById(btnId);
-		btn.onmouseup = function(){
+		btn.onmouseout = function(){
 			changeBoxBackgroundColor(btn,color);
 		};
 	};
