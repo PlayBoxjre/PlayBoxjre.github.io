@@ -3,99 +3,244 @@
 <head>
 <meta charset="utf-8"/>
 <title>controller</title>
-	<style >
+	<style>
 		body,div,content,ul,ol,li,span,img,p{padding:0px;margin:0px;border:0px;}
-		div{
-			text-align:center;
-			vertical-align:middle;
-			line-height:100px;
-			
+		
+		header,footer{
+			width:80%;
+			position:relative;
+			top:0px;
+			left:0px;
+			clear:both;
+			margin:0 auto;
+			background-color:lightgray;
 		}
 		
-		.content{
-			margin:0 auto;
-			width:70%;
-			height:100%;
+		.controll_direction:after{
+			content:"";
+			clear:both;
 		}
-		.control_btn{
-			width:30%;
-			height:100px;
-			background-color :yellow;
-			background-position:center center;
-			background-attachment:float;
-			background-repeat:no-repeat;
+		
+		.btn_style{
+			width:40%;
+			height:20%;
+		}
+		
+		.contorll_direction div{
+			background-color:green;
+		}
+		.user_operation div{
+			float:left;
+			margin-top:1px;
+		background-color:#1f3f4f;
+		}
+		p{ 
+			float:left;
+			position:relative;
+			left:50%;
+			top:50%;
+			margin-top:-15px;
+			margin-left:-60px;
+			color:white;
+			font-size:30px;
+			bold:bold;
+		}
+		#right{
+			float:right;
+		}
+		#left{
 			float:left;
 		}
 		
-		.line_01{
-			position:relative;
+		
+		#videoCall,#takePicture{
+			width:49%;
+		}
+		#videoCall{
+		
+		}
+		#takePicture{
+			margin-left:2%;
+		}
+		
+		
+		
+		
+		
+		
 	
-		}
-		.line_02{
-			position:relative;
-			top:1px;
-			bottom:1px;
-		}
-		.line_03{
-				position:relative;
-				top:2px;
-		}
-		#btn_01,#btn_04,#btn_07{
-		background-color:#eee;
-		}
-		#btn_02,#btn_05,#btn_08{
-		background-color:#eee;
-		margin-left:2%;
-		margin-right:2%;
-		}
-		#btn_03,#btn_06,#btn_09{
-		background-color:#eee;
-		}
-</style>
+		
+		
+	
+	</style>
 </head>
 <script src="http://qzonestyle.gtimg.cn/open/mobile/light_app/js/device.js"></script>
 
+<body>
+	<header>
+		<div class="contorll_direction" >
+			<div class="btn_style" id="left"><p>&lt;&lt;&lt; left</p></div>
+			<div class="btn_style" id="right"><p>right &gt;&gt;&gt;</p></div>
+		</div>
+	</header>
+	<footer>
+		<div class="user_operation">
+			<div id="videoCall" class="btn_style"><p>video call</p></div>
+			<div id="takePicture" class="btn_style"><p>take picture</p></div>
+		</div>
+	</footer>
+</body>
 
+<!--调用的qqdeviceApi的js function-->
 <script>
-	
-	
-	window.onload =  function(){
-//麓貌驴陋qq log
+
+//window 加载完成事件
+	window.onload = function(){
 		
-		var Obtn01 = document.getElementById("btn_01");
-		var Obtn02 = document.getElementById("btn_02");
-		var Obtn03 = document.getElementById("btn_03");
-		var Obtn04 = document.getElementById("btn_04");
-		var Obtn05 = document.getElementById("btn_05");
-		var Obtn06 = document.getElementById("btn_06");
-		var Obtn07 = document.getElementById("btn_07");
-		var Obtn08 = document.getElementById("btn_08");
-		var Obtn09 = document.getElementById("btn_09");
+		var btn_left = document.getElementById("left");
+		var btn_right= document.getElementById("right");
+		var btn_callVideo = document.getElementById("videoCall");
+		var btn_takePicture = document.getElementById("takePicture");
 		
+	
+		
+		btn_left.onclick = function(){
+	
+			rotateMachine(100);
+		};
+		btn_right.onclick=function(){
+			rotateMachine(200);
+		};
+		btn_callVideo.onclick = function(){
+			sendRequestVideoCall();
+		};
+		btn_takePicture.onclick = function(){
+			takePicture();
+		};
+		
+		//open qq log switch 
 		openLog(true);
-		
-
-		Obtn01.onclick = function(){
-				this.style.background="#ff00ee";
-				f_openCameraControl();
-				device.showToast('测试');
-		};
-		
-		Obtn02.onclick =  function(){
-			this.style.background="#ff00ee";
-			f_callVideo();//video call 
-			device.showToast('测试');
-		};
+		//mouse down  change div background color
+		setMousedownListener("left","#119a11");
+		setMousedownListener("right","#119a11");
+		setMousedownListener("videoCall","#2f4f5f");
+		setMousedownListener("takePicture","#2f4f5f");
+		//mose up change div background color
+		setMouseupListener("left","green");
+		setMouseupListener("right","green");
+		setMouseupListener("videoCall","#1f3f4f");
+		setMouseupListener("takePicture","#1f3f4f");
 		
 		
-		//alert("xx");
+		
+		
 	
-  };
-
 	
+	
+	
+	};
+	
+	function setMousedownListener(btnId,color){
+		var btn = document.getElementById(btnId);
+		btn.onmousedown = function(){
+			changeBoxBackgroundColor(btn,color);
+		};
+	};
+	function setMouseupListener(btnId,color){
+		var btn = document.getElementById(btnId);
+		btn.onmouseup = function(){
+			changeBoxBackgroundColor(btn,color);
+		};
+	};
+
+	function changeBoxBackgroundColor(btn,color){
+		btn.style.backgroundColor=color;
+	};
 	
 	
 	/*
+	*controll robot camera to rotate specify degree by remotally.
+	* 
+	*****=== in fact,please build it that refer to your plan and configuration ====***
+	
+	degree (testing case example.)
+			180~ 360   - left
+			0  ~ 180   - right
+			
+	
+	datapoint : 100004578 
+	*/
+	function rotateMachine(degree){
+		device.log("degree:"+degree,"#f0f");
+		device.send({
+		datapoint : [{
+			id : 100004578,
+			value : degree
+			}],
+		//vibrate : 1, // 1为发送时振动，可选
+		//nfc : 1, // 1为近场通信方式，可选
+	//	lifetime : 20, // 生命期，范围1到604800秒，可选
+		onSuccess : function (ret) { // 发送成功回调
+			device.log('onSuccess: ' + JSON.stringify(ret));
+		},
+		onAck : function (ret) { // 接收响应成功回调，蓝牙设备暂不支持
+			device.log('onAck: ' + JSON.stringify(ret));
+		},
+		onError : function (ret) { // 发送失败回调
+			device.log('onError: ' + JSON.stringify(ret));
+			}
+		});
+		alert(JSON.stringify({
+		datapoint : [{
+			id : 100004578,
+			value : degree
+			}],
+		//vibrate : 1, // 1为发送时振动，可选
+		//nfc : 1, // 1为近场通信方式，可选
+	//	lifetime : 20, // 生命期，范围1到604800秒，可选
+		onSuccess : function (ret) { // 发送成功回调
+			device.log('onSuccess: ' + JSON.stringify(ret));
+		},
+		onAck : function (ret) { // 接收响应成功回调，蓝牙设备暂不支持
+			device.log('onAck: ' + JSON.stringify(ret));
+		},
+		onError : function (ret) { // 发送失败回调
+			device.log('onError: ' + JSON.stringify(ret));
+			}
+		}),"#0fe");
+	
+	};
+	
+	/*
+		send request that video call to your device
+	*/
+	function sendRequestVideoCall(deviceId){
+		device.log("video call","#f00");
+		device.startVideoChat();
+	};
+	/**
+		take picture in phone . 
+	*/
+	function takePicture(){
+		device.log("take picture","#f00");
+		device.takePicture();
+	};
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 *	qq light-app devices API 
 *
 *	use method by myself defined
@@ -112,22 +257,6 @@ function test(){
 	alert("import outer js file");
 };
 
-
-	/*	
-	视频聊天
-	*/
-	function f_callVideo(){
-		//alert("callVideo");
-		device.startVideoChat();
-	};
-	function f_callAudio(){
-		//this.style.background="#ff00ee";
-		alert("callAudio");
-	};
-	function f_closeChat(){
-		//this.style.background="#ff00ee";
-		alert("closeChat");
-	};
 
 
 /*打开摄像头命令
@@ -201,47 +330,11 @@ function openLog(boo){
 };
 
 
-function send(){
-    device.send({
-      datapoint : [{
-        id : 500005,
-        value : 1
-      }],
-      vibrate : 1, // 1为发送时振动，可选
-      nfc : 1, // 1为近场通信方式，可选
-      lifetime : 20, // 生命期，范围1到604800秒，可选
-      onSuccess : function (ret) { // 发送成功回调
-        device.log('onSuccess: ' + JSON.stringify(ret));
-      },
-      onAck : function (ret) { // 接收响应成功回调，蓝牙设备暂不支持
-        device.log('onAck: ' + JSON.stringify(ret));
-      },
-      onError : function (ret) { // 发送失败回调
-        device.log('onError: ' + JSON.stringify(ret));
-      }
-    });
+function send(json){
+    device.send(json);
 };
 
 </script>
 
-<body>
-	<div class="content">
-		<div class="line_01">
-			<div class="control_btn" id="btn_01">openVideo</div>
-			<div class="control_btn" id="btn_02">callAudio</div>
-			<div class="control_btn" id="btn_03">close</div>
-		</div>
-	    <div class="line_02">
-			<div class="control_btn" id="btn_04">4</div>
-			<div class="control_btn" id="btn_05">5</div>
-			<div class="control_btn" id="btn_06">6</div>
-		</div>
-		<div class="line_03">
-			<div class="control_btn" id="btn_07">7</div>
-			<div class="control_btn" id="btn_08">8</div>
-			<div class="control_btn" id="btn_09">9</div>
-		</div>
-	</div>
-</body>
 
 </html>
